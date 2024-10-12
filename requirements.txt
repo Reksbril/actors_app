@@ -1,0 +1,4 @@
+# Required python 3.11
+
+django==5.1
+PyMuPDF==1.24.9

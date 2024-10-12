@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'pdf_app/style.css' %}" />
+
+  <head>
+    <meta charset="utf-8" />
+    <title>My test page</title>
+  </head>
+  <body>
+    <h2>The list of files</h2>
+
+    {% if all_scenarios_list %}
+      <ul>
+        {% for scenario in all_scenarios_list %}
+          <li>
+            <div class="list_element">
+              <a href="{% url 'pdf_app:detail' scenario.scenario_id %}">{{ scenario.scenario_id }}</a>
+              <div class="delete_button" onclick="location.href='{% url 'pdf_app:delete_scenario' scenario.scenario_id %}'">❌</div>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No files are available</p>
+    {% endif %}
+
+    <form enctype="multipart/form-data" action="{% url 'pdf_app:index' %}" method="post">
+      {% csrf_token %}
+      {{ pdf_file_form }}
+      <input type="submit" value="Send" />
+    </form>
+  </body>
+</html>

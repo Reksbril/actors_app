@@ -1,0 +1,100 @@
+body {
+    background: #242832;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+a {
+    color: #f0bdff;
+}
+
+.popup_div {
+    position: fixed;
+    padding: 0;
+    margin: 0;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+    background: rgba(105, 105, 105, 0.8);
+
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.popup_box {
+    display: flex;
+    flex-direction: column;
+    padding-top: 25px;
+    padding-bottom: 40px;
+    padding-right: 25px;
+    padding-left: 25px;
+    background: rgba(80, 80, 80, 1.0);
+    border-color: black;
+    border: solid;
+    border-radius: 25px;
+    color: rgb(218, 218, 218);
+}
+
+.delete_button {
+    cursor: pointer;
+}
+
+.list_element {
+    display: flex;
+    gap: 10px;
+}
+
+.next_button_class {
+    display: none;
+}
+
+.grid_wrapper {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.dialogue_audio_container {
+    grid-column: 2 / 3;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+.dialogue_element_wrapper {}
+
+.dialogue_element_wrapper:hover {
+    background: #50659b;
+}
+
+.audio_player_wrapper {}
+
+.character_name {
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    color: #bfffbd;
+}
+
+.dialogue_text {
+    max-width: fit-content;
+}
+
+.scenario_page_number {
+    grid-column: 2;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: large;
+}
+
+@media (max-width: 480px) {
+    .grid_wrapper {
+        display: block;
+    }
+}

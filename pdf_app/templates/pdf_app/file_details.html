@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'pdf_app/style.css' %}" />
+
+  <head>
+    <meta charset="utf-8" />
+    <title>My test page</title>
+  </head>
+  <body>
+    <div class="popup_div" id="popup_div_id">
+      <div class="popup_box">
+        <h2>Select the character you're playing</h2>
+        <select id="popupSelect">
+          {% for character in all_characters %}
+            <option value="{{ character }}" onclick="changeMyCharacterName('{{ character }}')">{{ character }}</option>
+          {% endfor %}
+        </select>
+        <button onclick="closeCharacterSelectionPopup()">Select</button>
+      </div>
+    </div>
+
+    <div id="my_character_name" data-character-name="Horatio"></div>
+    <audio id="global_audio_player" class="audio-player" type="audio/mp3"></audio>
+    <button id="next_button" class="next_button_class">Next</button>
+    {% for page in scenario.pages %}
+      <div class="grid_wrapper">
+        {% for dialogue_element in page.dialogue_elements %}
+          <div class="dialogue_audio_container">
+            <div class="dialogue_element_wrapper" onclick="dialogueElementOnClick({{ dialogue_element.id }})">
+              <div class="character_name">
+                <p>{{ dialogue_element.character_name }}</p>
+              </div>
+              <div class="dialogue_text">{{ dialogue_element.dialogue_text }}</div>
+            </div>
+            <div class="audio_player_wrapper" id="audio_player_wrapper_id_{{ dialogue_element.id }}" data-character-name="{{ dialogue_element.character_name }}" data-audio-url="{% url 'pdf_app:get_audio' scenario_id dialogue_element.id %}"></div>
+          </div>
+        {% endfor %}
+        <div class="scenario_page_number">{{ page.page_number }}</div>
+      </div>
+    {% endfor %}
+  </body>
+
+  <script src="{% static 'pdf_app/scripts.js' %}"></script>
+</html>
